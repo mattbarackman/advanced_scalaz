@@ -11,17 +11,10 @@ object PrintDefaults {
   implicit val intPrintable = new Printable[Int] {
     def format(input: Int) = input.toString
   }
-  implicit val catPrintable = new Printable[Cat] {
-    def format(input: Cat) = {
-      val name = Print.format(input.name)
-      val age = Print.format(input.age)
-      val color = Print.format(input.color)
-      s"$name is a $age year-old $color cat."
-    }
-  }
 }
 
 object Print {
+
   def format[A](input: A)(implicit printer: Printable[A]): String = {
     printer.format(input)
   }
@@ -29,5 +22,3 @@ object Print {
     println(format(input))
   }
 }
-
-case class Cat(name: String, age: Int, color: String)
