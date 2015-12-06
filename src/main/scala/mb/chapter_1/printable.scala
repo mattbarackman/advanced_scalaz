@@ -15,10 +15,21 @@ object PrintDefaults {
 
 object Print {
 
-  def format[A](input: A)(implicit printer: Printable[A]): String = {
-    printer.format(input)
+  def format[A](input: A)(implicit printable: Printable[A]): String = {
+    printable.format(input)
   }
-  def print[A](input: A)(implicit printer: Printable[A]): Unit = {
+  def print[A](input: A)(implicit printable: Printable[A]): Unit = {
     println(format(input))
+  }
+}
+
+object PrintSyntax {
+  implicit class PrintOps[A](value: A) {
+    def format(implicit printable: Printable[A]): String = {
+      printable.format(value)
+    }
+    def print(implicit printable: Printable[A]): Unit = {
+      println(printable.format(value))
+    }
   }
 }
