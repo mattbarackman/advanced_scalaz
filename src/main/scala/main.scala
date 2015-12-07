@@ -14,6 +14,7 @@ object Main extends App {
 
   cat1.println
   cat2.println
+
   println("cat1 === cat2 : " + (cat1 === cat2))
   println("cat1 =/= cat2 : " + (cat1 =/= cat2))
   println("cat2 === cat3 : " + (cat2 === cat3))
